@@ -7,6 +7,13 @@
 int main() {
     std::string line;
     std::getline(std::cin, line);
+    
+    for(size_t i = 0; i < line.size() - 1; i++) {
+        if (line[i + 1] == '-' && line[i] != ' ') {
+            line.insert(i + 1, " ");
+        }
+    }
+
     std::istringstream iss(line);
 
     std::vector<int> nums;
