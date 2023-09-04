@@ -8,9 +8,10 @@ std::vector<int> QuickSort::sort(const std::vector<int>& list) {
 
 void QuickSort::quickSort(std::vector<int>& list, int low, int high) {
     if (low < high) {
-        int pivotIndex = partition(list, low, high);
-        quickSort(list, low, pivotIndex - 1);
-        quickSort(list, pivotIndex + 1, high);
+        int pi = partition(list, low, high);
+
+        quickSort(list, low, pi - 1);
+        quickSort(list, pi + 1, high);
     }
 }
 
@@ -20,10 +21,12 @@ int QuickSort::partition(std::vector<int>& list, int low, int high) {
         pivot = list[low + 2];
     else
         pivot = list[high];
-    int i = (low - 1);
+
+    int i = (low - 1); // Index of smaller element
+
     for (int j = low; j <= high - 1; j++) {
-        if (list[j] <= pivot) {
-            i++;
+        if (list[j] < pivot) {
+            i++; // increment index of smaller element
             std::swap(list[i], list[j]);
         }
     }
